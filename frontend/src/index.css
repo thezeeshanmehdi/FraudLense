@@ -1,0 +1,192 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+@theme {
+  /* Default Dark Theme Theme mappings (registers variables in Tailwind v4) */
+  --color-cyber-bg: #030014;
+  --color-cyber-panel: rgba(10, 8, 28, 0.6);
+  --color-cyber-border: rgba(124, 58, 237, 0.2);
+  --color-cyber-border-hover: rgba(0, 242, 254, 0.4);
+  --color-cyber-text: #f3f4f6;
+  --color-cyber-muted: #9ca3af;
+  --color-cyber-cyan: #00f2fe;
+  --color-cyber-purple: #7c3aed;
+  --color-cyber-violet: #a78bfa;
+  --color-cyber-pink: #ec4899;
+  --color-cyber-green: #10b981;
+  --color-cyber-yellow: #fbbf24;
+  --color-cyber-red: #ef4444;
+
+  --shadow-glow-cyan: 0 0 15px rgba(0, 242, 254, 0.35);
+  --shadow-glow-purple: 0 0 15px rgba(124, 58, 237, 0.35);
+  --shadow-glow-pink: 0 0 15px rgba(236, 72, 153, 0.35);
+  --shadow-glow-green: 0 0 15px rgba(16, 185, 129, 0.35);
+  --shadow-glow-red: 0 0 15px rgba(239, 68, 68, 0.35);
+  --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
+  --font-sans: 'Outfit', 'Inter', sans-serif;
+  --font-mono: 'Fira Code', 'Courier New', monospace;
+
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-shimmer: shimmer 2.5s infinite linear;
+  --animate-radar: radar 8s infinite linear;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes radar {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+body {
+  --radial-orb-1: rgba(124, 58, 237, 0.08);
+  --radial-orb-2: rgba(0, 242, 254, 0.08);
+  --grid-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M0 0h40v40H0V0zm1 1h38v38H1V1z' fill='%237c3aed' fill-opacity='0.03'/%3E%3C/svg%3E");
+
+  background-color: var(--color-cyber-bg);
+  color: var(--color-cyber-text);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  selection-background-color: var(--color-cyber-purple);
+  selection-color: #ffffff;
+  
+  background-image: 
+    radial-gradient(circle at 10% 20%, var(--radial-orb-1) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, var(--radial-orb-2) 0%, transparent 40%),
+    var(--grid-image);
+  background-attachment: fixed;
+}
+
+/* Light Mode overrides - overrides variables directly on the body tag for children */
+body.light {
+  --color-cyber-bg: #f8fafc;
+  --color-cyber-panel: rgba(255, 255, 255, 0.82);
+  --color-cyber-border: rgba(99, 102, 241, 0.15);
+  --color-cyber-border-hover: rgba(99, 102, 241, 0.45);
+  --color-cyber-text: #0f172a;
+  --color-cyber-muted: #475569;
+
+  --shadow-glow-cyan: 0 0 12px rgba(6, 182, 212, 0.2);
+  --shadow-glow-purple: 0 0 12px rgba(99, 102, 241, 0.2);
+  --shadow-glow-pink: 0 0 12px rgba(236, 72, 153, 0.2);
+  --shadow-glow-green: 0 0 12px rgba(16, 185, 129, 0.2);
+  --shadow-glow-red: 0 0 12px rgba(239, 68, 68, 0.2);
+  --shadow-glass: 0 8px 32px 0 rgba(148, 163, 184, 0.12);
+
+  --radial-orb-1: rgba(99, 102, 241, 0.05);
+  --radial-orb-2: rgba(6, 182, 212, 0.05);
+  --grid-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M0 0h40v40H0V0zm1 1h38v38H1V1z' fill='%236366f1' fill-opacity='0.02'/%3E%3C/svg%3E");
+}
+
+/* Glassmorphism Panel styles */
+.glass-panel {
+  background-color: var(--color-cyber-panel);
+  backdrop-filter: blur(24px);
+  border: 1px solid var(--color-cyber-border);
+  border-radius: 1rem;
+  box-shadow: var(--shadow-glass);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-panel:hover {
+  border-color: var(--color-cyber-border-hover);
+  box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.25), 0 0 15px rgba(124, 58, 237, 0.1);
+}
+
+body.light .glass-panel:hover {
+  box-shadow: 0 10px 40px 0 rgba(148, 163, 184, 0.12), 0 0 15px rgba(99, 102, 241, 0.05);
+}
+
+/* Cyber Neon Text gradients */
+.cyber-text-gradient {
+  background-image: linear-gradient(to right, var(--color-cyber-cyan), var(--color-cyber-violet), var(--color-cyber-pink));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.cyber-text-cyan-purple {
+  background-image: linear-gradient(to right, var(--color-cyber-cyan), var(--color-cyber-purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Glow lines and shapes */
+.neon-glow-cyan {
+  box-shadow: var(--shadow-glow-cyan);
+}
+.neon-glow-purple {
+  box-shadow: var(--shadow-glow-purple);
+}
+.neon-glow-pink {
+  box-shadow: var(--shadow-glow-pink);
+}
+
+/* Grid & Scanline effects */
+.cyber-scanline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, transparent, rgba(0, 242, 254, 0.6), transparent);
+  animation: scan 3s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes scan {
+  0% { top: 0%; opacity: 0; }
+  5% { opacity: 1; }
+  95% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-cyber-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(124, 58, 237, 0.2);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 242, 254, 0.5);
+}
+
+/* Terminal typing effect cursor */
+.terminal-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 15px;
+  background-color: #00f2fe;
+  animation: blink 1s step-end infinite;
+  vertical-align: middle;
+  margin-left: 4px;
+}
+
+@keyframes blink {
+  from, to { background-color: transparent }
+  50% { background-color: #00f2fe }
+}
+
+/* Circular progress animations */
+.gauge-svg {
+  transform: rotate(-90deg);
+}
+.gauge-circle {
+  transition: stroke-dashoffset 0.6s ease-out;
+}
